@@ -14,7 +14,7 @@ import javax.inject.Inject;
 @Service
 public class BlogService {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(BlogService.class);
 
     @Inject
     DB db;

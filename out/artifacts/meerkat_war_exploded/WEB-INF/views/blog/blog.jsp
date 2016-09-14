@@ -8,5 +8,10 @@
 <p>${blog.authorName}</p>
 <h3>${blog.summary}</h3>
 <p>${blog.content}</p>
+<script src="/source/blog/javascript/public.js"></script>
+<script>
+    mBlog = new MBlog;
+    mBlog.init();
+</script>
 </body>
 </html>
