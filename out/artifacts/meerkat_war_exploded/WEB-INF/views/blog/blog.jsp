@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>${blog.title}</h1>
-<p>${blog.author}</p>
+<p>${blog.authorName}</p>
 <h3>${blog.summary}</h3>
 <p>${blog.content}</p>
 </body>

@@ -20,7 +20,7 @@ public class BlogService {
     DB db;
 
     public Blog getById(Long id) {
-        return db.from(Blog.class).where("id", id).first(Blog.class);
+        return db.from("blog b").select("b.*, u.nick as authorName").join("INNER JOIN `user` u").where("b.id", id).segment("u.id = b.author").first(Blog.class);
     }
 
 }

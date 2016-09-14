@@ -21,6 +21,7 @@ public class Blog {
     private String content;
     @Column
     private Long author;
+    private String authorName;
     @Column
     private Long categoryId;
     @Column
@@ -103,5 +104,13 @@ public class Blog {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }
