@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-war" name="meerkat">
-    <output-path>$PROJECT_DIR$/out/artifacts/meerkat</output-path>
-    <root id="root" />
-  </artifact>
-</component>
