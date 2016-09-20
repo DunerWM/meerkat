@@ -1,5 +1,8 @@
 package com.meerkat.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.meerkat.base.util.NormalDateSerializer;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -27,7 +30,9 @@ public class Blog {
     @Column
     private Boolean deleted;
     @Column
+    @JsonSerialize(using = NormalDateSerializer.class)
     private Date createdAt;
+    private String postAt;
     @Column
     private Date updatedAt;
 
@@ -112,5 +117,13 @@ public class Blog {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
+    }
+
+    public String getPostAt() {
+        return postAt;
+    }
+
+    public void setPostAt(String postAt) {
+        this.postAt = postAt;
     }
 }

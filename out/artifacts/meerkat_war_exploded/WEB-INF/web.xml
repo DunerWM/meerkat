@@ -25,4 +25,14 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <!--静态文件过滤器，用以查找已更名静态文件，以防止客户端缓存静态文件不更新-->
+    <filter>
+        <filter-name>StaticFileFilter</filter-name>
+        <filter-class>com.meerkat.base.filter.StaticFileFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StaticFileFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
