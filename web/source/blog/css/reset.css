@@ -43,5 +43,4 @@ table {
 }
 input[type="text"],input[type="password"]{
     -webkit-appearance: none;
-    padding: 0 !important;
 }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" href="/source/blog/css/reset.css"/>
+    <link rel="stylesheet" href="/source/common/css/wangEditor.min.css">
     <link rel="stylesheet" href="/source/blog/css/public.css"/>
     <title>${blog.title}——狐獴meerkat.wiki</title>
 </head>
@@ -12,7 +13,7 @@
 <div class="container">
     <div class="blog-container">
         <img src="/source/blog/images/1.jpg" alt="title"/>
-        <div class="blog-content">
+        <div class="blog-content wangEditor-container">
             <header>
                 <hgroup>
                     <h1>${blog.title}</h1>
@@ -20,7 +21,7 @@
                     <p>${blog.postAt} ${blog.authorName}</p>
                 </hgroup>
             </header>
-            <div class="content">${blog.content}</div>
+            <div class="content wangEditor-txt">${blog.content}</div>
         </div>
     </div>
 </div>
