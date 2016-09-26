@@ -47,12 +47,13 @@
         // token2: '12345'
     };
 
-//    editor.config.uploadImgFns = function() {
-//
-//    }
+    //    editor.config.uploadImgFns = function() {
+    //
+    //    }
 
     editor.config.uploadHeaders = {
         // 'Accept' : 'text/x-json'
+        "enctype": "multipart/form-data"
     }
     // editor.config.uploadImgFileName = 'myFileName';
 
@@ -76,8 +77,8 @@
             "content": editor.$txt.html()
         }
 
-        $.post("/blog/new", data, function(res) {
-            if(res.success) {
+        $.post("/blog/new", data, function (res) {
+            if (res.success) {
                 alert("发布成功！");
             }
         })

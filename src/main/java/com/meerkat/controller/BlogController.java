@@ -4,6 +4,7 @@ import com.meerkat.base.util.DateUtil;
 import com.meerkat.base.util.JsonResponse;
 import com.meerkat.entity.Blog;
 import com.meerkat.entity.User;
+import com.meerkat.interceptor.Login;
 import com.meerkat.service.BlogService;
 import com.meerkat.service.UserService;
 import org.slf4j.Logger;
@@ -41,6 +42,8 @@ public class BlogController {
         return "blog/blog";
     }
 
+
+    @Login
     @RequestMapping(value = "new", method = RequestMethod.GET)
     public String newBlog(HttpServletRequest request) {
         return "blog/new";
@@ -50,18 +53,20 @@ public class BlogController {
     public JsonResponse newBlog(HttpServletRequest request, HttpServletResponse response, Blog blog) {
         JsonResponse jsonResponse = new JsonResponse(false);
         Long userId = (Long) request.getSession().getAttribute("userId");
-//        User user = null;
-//        if (userId != null) {
-//            user = userService.getById(userId);
-//        }
-//        if (user != null) {
-            blog.setAuthor(1L);
+        User user = null;
+        if (userId != null) {
+            user = userService.getById(userId);
+        }else{
+            jsonResponse.setMessage("登录过期，请重新登录");
+            return jsonResponse;
+        }
+        if (user != null) {
             try {
                 blogService.create(blog);
             } catch (Exception e) {
                 log.error("创建文章出错", e);
             }
-//        }
+        }
         return jsonResponse;
     }
 
