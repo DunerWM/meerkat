@@ -24,5 +24,10 @@ public class IndexController {
         return "kat/index";
     }
 
+    @RequestMapping(value = "login")
+    public String showLogin(HttpServletRequest request) {
+        return "kat/login";
+    }
+
 }
 

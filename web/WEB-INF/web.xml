@@ -36,6 +36,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--设备记录器，会记录请求的设备信息，存在在request的属性中[currentDevice]，用以判断设备类型，如电脑，手机，pad等-->
+    <filter>
+        <filter-name>deviceResolverRequestFilter</filter-name>
+        <filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>deviceResolverRequestFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 
 
 </web-app>

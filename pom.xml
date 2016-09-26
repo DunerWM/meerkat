@@ -8,7 +8,6 @@
     <artifactId>com.meerkat</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
         <org.springframework-version>4.1.2.RELEASE</org.springframework-version>
         <slf4j.version>1.6.0</slf4j.version>
@@ -65,7 +64,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
-
 
 
         <dependency>
@@ -166,11 +164,16 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.mobile</groupId>
-            <artifactId>spring-mobile-device</artifactId>
-            <version>1.1.4.RELEASE</version>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version> <!-- makesure correct version here -->
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.mobile</groupId>
+            <artifactId>spring-mobile-device</artifactId>
+            <version>1.1.5.RELEASE</version>
+        </dependency>
 
 
     </dependencies>
@@ -220,7 +223,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <outputDirectory>${project.basedir}/lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>true</overWriteSnapshots>
                         </configuration>
@@ -239,62 +242,11 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
-                    <warSourceDirectory>webapp</warSourceDirectory>
+                    <warSourceDirectory>web</warSourceDirectory>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>war-prd</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <!--<finalName>${project.artifactId}-${build.timestamp}</finalName>-->
-                            <finalName>ROOT-prd</finalName>
-                            <descriptors>
-                                <descriptor>war-prd.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>war-stg</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <!--<finalName>${project.artifactId}-${build.timestamp}</finalName>-->
-                            <finalName>ROOT-stg</finalName>
-                            <descriptors>
-                                <descriptor>war-stg.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>war-test</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <!--<finalName>${project.artifactId}-${build.timestamp}</finalName>-->
-                            <finalName>ROOT-test</finalName>
-                            <descriptors>
-                                <descriptor>war-test.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
+
 
 </project>
