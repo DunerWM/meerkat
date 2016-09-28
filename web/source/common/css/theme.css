@@ -1,0 +1,227 @@
+@charset "utf-8";
+body{ font: 16px "Microsoft YaHei", "Lucida Grande", Helvetica, Arial, sans-serif;}
+.theme *{
+    color: #fff;
+}
+.theme-list{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 1;
+}
+.theme-list li{
+    height: 14px;
+    width: 14px;
+    border-radius: 9px;
+    border: 2px solid #fff;
+    float: right;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.theme-list li[data-theme=theme-passion] {
+    background-color: rgb(179,36,28);
+}
+.theme-list li[data-theme=theme-deep] {
+    background-color: #2c3e50;
+}
+.theme-list li[data-theme=theme-fresh] {
+    background-color: #1abc9c;
+}
+.theme-passion{}
+.theme-deep{}
+.theme-fresh{}
+.theme-passion .theme-color{
+    color: rgb(179,36,28);
+}
+.theme-deep .theme-color{
+    color: #2c3e50;
+}
+.theme-fresh .theme-color{
+    color: #1abc9c;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+.main-container{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-transition: background-color 5s linear;
+}
+.main-container.theme-deep .main-left {
+    background-color: #253545;
+}
+.main-container.theme-fresh .main-left {
+    background-color: #2f9984;
+}
+.main-container.theme-passion .main-left {
+    background-color: #9d261d;
+}
+
+
+/*大幕*/
+.curtain{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    -webkit-transition: background-color 0.25s linear;
+}
+.theme-passion .curtain{
+    background-color: rgb(179,36,28);
+}
+.theme-deep .curtain{
+    background-color: #2c3e50;
+}
+.theme-fresh .curtain{
+    background-color: #1abc9c;
+}
+.main-container.inner .curtain{
+    background-color: #fff;
+}
+/*块*/
+.section{
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.section-default{
+    background-color: #edeff1;
+}
+/*定宽section*/
+.section-small{
+
+}
+.section-middle{
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    top: 150px;
+}
+.section-middle-pwd{
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    top: 20px;
+}
+.section-large{
+
+}
+/*宽度控制*/
+.column-12{
+    width: 100%;
+}
+.pos-relative{
+    position: relative;
+}
+/*表单*/
+.form-group{
+    padding: 10px 0;
+}
+.form-group .group-with-label{
+
+}
+.form-group input[type=text],
+.form-group input[type=password]{
+    display: block;
+    height: 40px;
+    line-height: 30px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 1em;
+    color: #34495e;
+}
+input[type=submit] {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+.theme-passion input[type=submit]{
+    background-color: rgb(179,36,28);
+}
+.theme-deep input[type=submit]{
+    background-color: #2c3e50;
+}
+.theme-fresh input[type=submit]{
+    background-color: #1abc9c;
+}
+.theme-passion input[type=submit]:hover{
+    background-color: rgb(225,51,41);
+}
+.theme-fresh input[type=submit]:hover{
+    background-color: rgb(56,193,160);
+}
+.theme-passion .form-group input:focus{
+    border-color: rgb(225,51,41);
+}
+.theme-deep .form-group input:focus{
+    border-color: #2c3e50;
+}
+.theme-fresh .form-group input:focus{
+    border-color: #1abc9c;
+}
+.form-group input{
+    -webkit-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear
+}
+.error{
+    display: none;
+    position: absolute;
+    width: 400px;
+    height: 40px;
+    bottom: 40px;
+    left: 50%;
+    margin-left: -200px;
+    border-radius: 20px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    -webkit-transition: all 1s linear;
+}
+.theme-passion .error{
+    box-shadow: 0 0 5px rgb(179,36,28);
+    color: rgb(225,51,41);
+}
+.theme-deep .error{
+    box-shadow: 0 0 5px #2c3e50;
+    color: #2c3e50;
+}
+.theme-fresh .error{
+    box-shadow: 0 0 5px #2c3e50;
+    color: #1abc9c;
+}
+.copy-right{
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+h1{
+    text-align: center;
+    line-height: 140px;
+    font-size: 40px;
+    color: #fff;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+}
+.fl-right{
+    float: right;
+}

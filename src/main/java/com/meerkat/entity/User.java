@@ -13,14 +13,26 @@ public class User {
 
     @Id
     private Long id;
+    @Column  // 登陆名
+    private String nick;
+    @Column  // 加密后的密码
+    private String encrypted;
     @Column
-    private String userName;
+    private String salt;
     @Column
     private String realName;
-    @Column
+    @Column  // 格言
     private String motto;
     @Column
-    private String sex;
+    private int sex;
+    @Column
+    private String cell;
+    @Column
+    private String idCard;
+    @Column
+    private Boolean isDeleted;
+    @Column
+    private int status;
     @Column
     private Date createdAt;
     @Column
@@ -37,12 +49,28 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNick() {
+        return nick;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public String getEncrypted() {
+        return encrypted;
+    }
+
+    public void setEncrypted(String encrypted) {
+        this.encrypted = encrypted;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getRealName() {
@@ -61,12 +89,44 @@ public class User {
         this.motto = motto;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public String getCell() {
+        return cell;
+    }
+
+    public void setCell(String cell) {
+        this.cell = cell;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Date getCreatedAt() {

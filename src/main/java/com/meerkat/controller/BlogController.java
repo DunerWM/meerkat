@@ -52,15 +52,11 @@ public class BlogController {
     @RequestMapping(value = "new", method = RequestMethod.POST)
     public JsonResponse newBlog(HttpServletRequest request, HttpServletResponse response, Blog blog) {
         JsonResponse jsonResponse = new JsonResponse(false);
-        Long userId = (Long) request.getSession().getAttribute("userId");
-        User user = null;
-        if (userId != null) {
-            user = userService.getById(userId);
-        }else{
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
             jsonResponse.setMessage("登录过期，请重新登录");
             return jsonResponse;
-        }
-        if (user != null) {
+        } else {
             try {
                 blogService.create(blog);
             } catch (Exception e) {
