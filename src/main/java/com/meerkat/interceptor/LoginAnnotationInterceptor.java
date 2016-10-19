@@ -1,7 +1,6 @@
 package com.meerkat.interceptor;
 
 import com.meerkat.entity.User;
-import com.meerkat.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mobile.device.Device;
@@ -9,7 +8,6 @@ import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
@@ -19,14 +17,11 @@ import java.io.PrintWriter;
  */
 public class LoginAnnotationInterceptor extends HandlerInterceptorAdapter {
 
-    @Inject
-    UserService userService;
-
     private String characterEncoding = "utf-8";                //http 头编码
     private String message = "您尚未登录，请登录后重试";            //返回错误信息
     private int retcode = 100;                                //返回错误代码
     private String loginPage = "/login.html";                    //登录页面
-    private String mobileLoginPage = "/mobile/login.html";    //移动端的登录页面
+    private String mobileLoginPage = "/login.html";    //移动端的登录页面
 
     private static final Logger log = LoggerFactory.getLogger(LoginAnnotationInterceptor.class);
 
@@ -51,21 +46,11 @@ public class LoginAnnotationInterceptor extends HandlerInterceptorAdapter {
             }
         }
 
-        User user = (User) request.getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
 
         if (user == null) {   //没有登录
             if (login.value() == ResultTypeEnum.redirect) {   //页面跳转
                 sendRedirect(request, response);
-            } else if (login.value() == ResultTypeEnum.structure_redirect) {   //页面跳转
-                String uri = request.getRequestURI();
-                if (!uri.equals("/mobile/structure/login") && !uri.equals("/mobile/login")) {//登录不拦截
-                    String structure_user = (String) request.getSession().getAttribute("structure_user");
-                    if (structure_user == null) {//拦截非app登陆用户
-                        sendRedirect(request, response);
-                    } else {
-                        response.sendRedirect("/mobile/structure/login?url=" + getFullHref(request));
-                    }
-                }
             } else if (login.value() == ResultTypeEnum.json) {   //返回json类型数据
                 sendJson(request, response);
             } else if (login.value() == ResultTypeEnum.xml) {

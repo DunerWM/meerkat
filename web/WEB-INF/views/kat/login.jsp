@@ -41,11 +41,14 @@
             "password": $("input[name=password]").val()
         }, function (res) {
             if (res.success) {
-                alert("登陆成功");
-//                parent.location.href = "/user/index";
+                if (res.data.url && res.data.url.length > 0) {
+                    window.location = res.data.url;
+                } else {
+                    window.location.href = "/index";
+                }
             } else {
 //                showErrorMessage(res.message);
-                alert("登陆失败");
+                alert(res.message);
                 if (res.message == "请修改密码") {
                     parent.location.href = "/user/update/password";
                 }

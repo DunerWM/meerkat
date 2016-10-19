@@ -49,6 +49,7 @@ public class BlogController {
         return "blog/new";
     }
 
+    @Login
     @RequestMapping(value = "new", method = RequestMethod.POST)
     public JsonResponse newBlog(HttpServletRequest request, HttpServletResponse response, Blog blog) {
         JsonResponse jsonResponse = new JsonResponse(false);
@@ -58,6 +59,7 @@ public class BlogController {
             return jsonResponse;
         } else {
             try {
+                blog.setAuthor(user.getId());
                 blogService.create(blog);
             } catch (Exception e) {
                 log.error("创建文章出错", e);

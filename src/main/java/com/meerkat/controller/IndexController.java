@@ -4,6 +4,7 @@ import com.meerkat.base.db.DB;
 import com.meerkat.base.util.JsonResponse;
 import com.meerkat.base.util.PasswordEncoder;
 import com.meerkat.entity.User;
+import com.meerkat.interceptor.Login;
 import com.meerkat.service.IndexService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ public class IndexController {
     @Inject
     DB db;
 
+    @Login
     @RequestMapping(value = "index")
     public String showIndex(HttpServletRequest request) {
         int count = indexService.count();
@@ -63,7 +65,10 @@ public class IndexController {
             if (StringUtils.equals(PasswordEncoder.encodePassword(password, user.getSalt()), user.getEncrypted())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                session.setMaxInactiveInterval(30 * 60);
+                String url = request.getParameter("url");
+                if (StringUtils.isNotBlank(url)) {
+                    jsonResponse.set("url", url);
+                }
                 jsonResponse.setSuccess(true);
             } else {
                 jsonResponse.setMessage("用户名或者密码错误");
@@ -80,7 +85,7 @@ public class IndexController {
         return "kat/register";
     }
 
-    @RequestMapping(value = "register")
+//    @RequestMapping(value = "register")
 
     public static void createCookie(HttpServletResponse response, String cookieName, String cookieValue, int maxAge) {
         Cookie cookie = new Cookie(cookieName, cookieValue);
@@ -90,6 +95,13 @@ public class IndexController {
         cookie.setMaxAge(maxAge);
         response.addCookie(cookie);
     }
+
+    public static String getRefer(HttpServletRequest request) {
+        String refer = request.getHeader("Referer");
+        String patternStr = "";
+        return "";
+    }
+
 
 }
 
