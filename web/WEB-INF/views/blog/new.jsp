@@ -79,7 +79,7 @@
 
         $.post("/blog/new", data, function (res) {
             if (res.success) {
-                alert("发布成功！");
+                window.location.href = "/blog/"+res.data.blogId;
             }
         })
 

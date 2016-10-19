@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,7 @@ public class BlogController {
 
     @Login
     @RequestMapping(value = "new", method = RequestMethod.POST)
+    @ResponseBody
     public JsonResponse newBlog(HttpServletRequest request, HttpServletResponse response, Blog blog) {
         JsonResponse jsonResponse = new JsonResponse(false);
         User user = (User) request.getSession().getAttribute("user");
@@ -60,7 +62,9 @@ public class BlogController {
         } else {
             try {
                 blog.setAuthor(user.getId());
-                blogService.create(blog);
+                blog = blogService.create(blog);
+                jsonResponse.set("blogId", blog.getId());
+                jsonResponse.setSuccess(true);
             } catch (Exception e) {
                 log.error("创建文章出错", e);
             }

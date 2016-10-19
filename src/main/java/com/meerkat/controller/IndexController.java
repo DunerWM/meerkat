@@ -33,7 +33,7 @@ public class IndexController {
     DB db;
 
     @Login
-    @RequestMapping(value = "index")
+    @RequestMapping(value = {"index", ""})
     public String showIndex(HttpServletRequest request) {
         int count = indexService.count();
         request.setAttribute("count", count);
@@ -42,6 +42,10 @@ public class IndexController {
 
     @RequestMapping(value = "login")
     public String showLogin(HttpServletRequest request) {
+        String url = request.getParameter("url");
+        if (url != null) {
+            request.setAttribute("url", url);
+        }
         return "kat/login";
     }
 
@@ -65,6 +69,7 @@ public class IndexController {
             if (StringUtils.equals(PasswordEncoder.encodePassword(password, user.getSalt()), user.getEncrypted())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
+                session.setMaxInactiveInterval(30 * 60);
                 String url = request.getParameter("url");
                 if (StringUtils.isNotBlank(url)) {
                     jsonResponse.set("url", url);

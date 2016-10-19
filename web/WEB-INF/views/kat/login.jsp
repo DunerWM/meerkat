@@ -37,6 +37,7 @@
     $("#submit").click(function (event) {
         event.preventDefault();
         $.post('/login', {
+            "url": "${url}",
             "loginName": $("input[name=loginName]").val(),
             "password": $("input[name=password]").val()
         }, function (res) {
