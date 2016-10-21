@@ -1,5 +1,6 @@
 package com.meerkat.service;
 
+import com.meerkat.base.util.ConfigPropertiesUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.AutoCloseInputStream;
@@ -7,10 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -23,7 +27,7 @@ public class ImageService {
 
     Logger log = LoggerFactory.getLogger(ImageService.class);
 
-    private static final String SAVE_PATH = "/Users/wm/workspace/idea/meerkat/upload";
+    private static final String SAVE_PATH = ConfigPropertiesUtil.getValue("img.save.path");
 
     public List<String> uploadImages(HttpServletRequest request) {
         List<String> pathList = new ArrayList<String>();
@@ -102,7 +106,7 @@ public class ImageService {
     public String getImgSavePath() {
         String uploadPath = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         uploadPath = uploadPath.replaceAll("-", File.separator);
-        return SAVE_PATH + uploadPath;
+        return SAVE_PATH + File.separator + uploadPath;
     }
 
     public String getImgSaveRelativePath() {

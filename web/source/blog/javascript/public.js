@@ -17,5 +17,4 @@ MBlog.renderBackground = function (className) {
     var randomDeg = parseInt(Math.random() * 180);
     document.querySelector("." + className).style.backgroundImage = "linear-gradient(" + randomDeg + "deg," + this.softColorArr[r1] + "," + this.darkColorArr[r2] + ")";
 
-
 }

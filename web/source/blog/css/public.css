@@ -88,3 +88,9 @@ img {
 .form-horizontal > div {
     margin-top: 30px;
 }
+
+/*图片上传*/
+.image-upload{
+    visibility: hidden;
+    height: 0;
+}
