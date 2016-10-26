@@ -23,6 +23,8 @@ public class Blog {
     @Column
     private String content;
     @Column
+    private String bannerImage;
+    @Column
     private Long author;
     private String authorName;
     @Column
@@ -125,5 +127,13 @@ public class Blog {
 
     public void setPostAt(String postAt) {
         this.postAt = postAt;
+    }
+
+    public String getBannerImage() {
+        return bannerImage;
+    }
+
+    public void setBannerImage(String bannerImage) {
+        this.bannerImage = bannerImage;
     }
 }

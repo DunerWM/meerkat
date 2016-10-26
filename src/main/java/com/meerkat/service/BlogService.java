@@ -1,6 +1,7 @@
 package com.meerkat.service;
 
 import com.meerkat.base.db.DB;
+import com.meerkat.base.db.Pagination;
 import com.meerkat.entity.Blog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,14 @@ public class BlogService {
 
     @Inject
     DB db;
+
+    public Pagination<Blog> getBlogPagination(Long categoryId, int page, int pageSize) {
+        String segment = "";
+        if (categoryId != null) {
+            segment = " and category_id = " + categoryId;
+        }
+        return db.from(Blog.class).segment("deleted = 0" + segment).paginate(Blog.class, page, pageSize);
+    }
 
     public Blog getById(Long id) {
         return db.from("blog b").select("b.*, u.nick as authorName").join("INNER JOIN `user` u").where("b.id", id).segment("u.id = b.author").first(Blog.class);

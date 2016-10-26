@@ -55,7 +55,7 @@ public class IndexController {
      * @param loginName
      * @param password
      * @return
-     * @throws IOException
+     * @throws java.io.IOException
      */
     @RequestMapping(value = {"login"}, method = RequestMethod.POST)
     @ResponseBody

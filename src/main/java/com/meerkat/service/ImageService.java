@@ -8,13 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -50,7 +47,7 @@ public class ImageService {
                     try {
                         int result = saveImgByStream(in, filePath, fileName);
                         if (result > 0) {
-                            pathList.add(relativePath + File.separator + fileName);
+                            pathList.add(File.separator + "image" + File.separator + relativePath + File.separator + fileName);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

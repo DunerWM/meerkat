@@ -26,7 +26,7 @@
         factory(window.jQuery);
     }
 })(function($){
-    
+
     // 验证是否引用jquery
     if (!$ || !$.fn || !$.fn.jquery) {
         alert('在引用wangEditor.js之前，先引用jQuery，否则无法使用 wangEditor');
@@ -64,7 +64,7 @@
         var nodeName = $elem[0].nodeName;
         if (nodeName !== 'TEXTAREA' && nodeName !== 'DIV') {
             // 只能是 textarea 和 div ，其他类型的元素不行
-            return;   
+            return;
         }
         this.valueNodeName = nodeName.toLowerCase();
         this.$valueContainer = $elem;
@@ -270,7 +270,7 @@ _e(function (E, $) {
         opt = opt === 'start' ? true : false;
 
         range = range || this.currentRange();
-        
+
         if (range) {
             // 合并，保存
             range.collapse(opt);
@@ -375,7 +375,7 @@ _e(function (E, $) {
         if (opt === 'end') {
             this.collapseRange(this.currentRange(), 'end');
         }
-        
+
         // 恢复选区
         this.restoreSelection();
     };
@@ -391,7 +391,7 @@ _e(function (E, $) {
         var range;
         var $txt = editor.txt.$txt;
         var $firstChild = $txt.children().first();
-        
+
         if ($firstChild.length) {
             editor.restoreSelectionByElem($firstChild.get(0));
         }
@@ -422,7 +422,7 @@ _e(function (E, $) {
             // 继续向下
             lastTextNode = lastTextNode.lastChild;
         }
-        
+
         var range = document.createRange();
         if (firstTextNode && lastTextNode) {
             // 说明 elem 有内容，能取到子元素
@@ -529,15 +529,15 @@ _e(function (E, $) {
         } catch (ex) {
 
         }
-        
+
         if(currentRange.text.length === 0){
             try {
                 // IE8 插入表情会报错
                 range.collapse(false);
             } catch (ex) {
-                
+
             }
-            
+
         }else{
             range.setEndPoint('StartToStart', currentRange);
         }
@@ -547,17 +547,17 @@ _e(function (E, $) {
 });
 // editor command hooks
 _e(function (E, $) {
-    
+
     E.fn.commandHooks = function () {
         var editor = this;
         var commandHooks = {};
-        
+
         // insertHtml
         commandHooks.insertHtml = function (html) {
             var $elem = $(html);
             var rangeElem = editor.getRangeElem();
             var targetElem;
-            
+
             targetElem = editor.getLegalTags(rangeElem);
             if (!targetElem) {
                 return;
@@ -578,7 +578,7 @@ _e(function (E, $) {
     E.fn.command = function (e, commandName, commandValue, callback) {
         var editor = this;
         var hooks;
-        
+
         function commandFn() {
             if (!commandName) {
                 return;
@@ -667,7 +667,7 @@ _e(function (E, $) {
         // 隐藏 dropPanel dropList modal  设置 200ms 间隔
         function hidePanelAndModal() {
             editor.hideDropPanelAndModal();
-        } 
+        }
         setTimeout(hidePanelAndModal, 200);
 
         if (e) {
@@ -752,9 +752,9 @@ _e(function (E, $) {
 
         if (!matchesSelector) {
             // 定义 matchesSelector 函数
-            matchesSelector = elem.webkitMatchesSelector || 
+            matchesSelector = elem.webkitMatchesSelector ||
                               elem.mozMatchesSelector ||
-                              elem.oMatchesSelector || 
+                              elem.oMatchesSelector ||
                               elem.matchesSelector;
         }
         if (!matchesSelector) {
@@ -816,7 +816,7 @@ _e(function (E, $) {
         }
 
         if (val === html) {
-            if (type === 'redo') { 
+            if (type === 'redo') {
                 editor.redo();
                 return;
             } else if (type === 'undo') {
@@ -928,7 +928,7 @@ _e(function (E, $) {
         // 执行 addMenus 之前：
         // 1. 允许用户修改 editor.UI 自定义配置UI
         // 2. 允许用户通过修改 editor.menus 来自定义配置菜单
-        // 因此要在 create 时执行，而不是 init           
+        // 因此要在 create 时执行，而不是 init
         editor.addMenus();
 
         // 渲染
@@ -1082,7 +1082,7 @@ _e(function (E, $) {
 
         $editorContainer.append($menuContainer);
     };
-    
+
     // 获取菜单栏的高度
     MenuContainer.fn.height = function () {
         var $menuContainer = this.$menuContainer;
@@ -1163,7 +1163,7 @@ _e(function (E, $) {
 
         if (menuUI == null) {
             E.warn('editor.UI配置中，没有菜单 "' + menuId + '" 的UI配置，只能取默认值');
-            
+
             // 必须写成 uiConfig['default'];
             // 写成 uiConfig.default IE8会报错
             menuUI = uiConfig['default'];
@@ -1192,7 +1192,7 @@ _e(function (E, $) {
     Menu.fn.render = function (groupIdx) {
         // 渲染UI
         this.initUI();
-        
+
         var editor = this.editor;
         var menuContainer = editor.menuContainer;
         var $menuItem = menuContainer.appendMenu(groupIdx, this);
@@ -1390,7 +1390,7 @@ _e(function (E, $) {
         } // if
     };
 
-    // 点击菜单，显示了 dropPanel modal 时，菜单的状态 
+    // 点击菜单，显示了 dropPanel modal 时，菜单的状态
     Menu.fn.active = function (active) {
         if (active == null) {
             return this._activeState;
@@ -1593,7 +1593,7 @@ _e(function (E, $) {
 });
 // dropListfn api
 _e(function (E, $) {
-    
+
     var DropList = E.DropList;
 
     // 渲染
@@ -1814,7 +1814,7 @@ _e(function (E, $) {
 });
 // dropPanel fn api
 _e(function (E, $) {
-   
+
     var DropPanel = E.DropPanel;
 
     // 渲染
@@ -2420,7 +2420,7 @@ _e(function (E, $) {
                             });
                         }
                     }
-                    
+
                 } else if (ieData && ieData.getData) {
                     // IE 直接从剪切板中取出纯文本格式
                     resultHtml = ieData.getData('text');
@@ -2469,7 +2469,7 @@ _e(function (E, $) {
                 });
                 return;
             }
-            
+
             if (legalTagArr.indexOf(nodeName) >= 0) {
                 // 如果是合法标签之内的，则根据元素类型，获取值
                 resultHtml += getResult(elem);
@@ -2524,7 +2524,7 @@ _e(function (E, $) {
                 return '<' + nodeName + '>' + htmlForP + '</' + nodeName + '>';
 
             } else if (['ul', 'ol'].indexOf(nodeName) >= 0) {
-                
+
                 // ul ol元素，获取子元素（li元素）的text link img，再拼接
                 $elem = $(elem);
                 $elem.children().each(function () {
@@ -2542,9 +2542,9 @@ _e(function (E, $) {
                     htmlForLi += '<li>' + html + '</li>';
                 });
                 return '<' + nodeName + '>' + htmlForLi + '</' + nodeName + '>';
-            
+
             } else {
-                
+
                 // 其他元素，移除元素属性
                 $elem = $(removeAttrs(elem));
                 return $('<div>').append($elem).html();
@@ -2600,7 +2600,7 @@ _e(function (E, $) {
             regArr.push(new RegExp(reg, 'ig'));
         });
 
-        // 增加 li 
+        // 增加 li
         regArr.push(new RegExp('\>\\s*\<(li)\>', 'ig'));
 
         // 增加 tr
@@ -2668,7 +2668,7 @@ _e(function (E, $) {
             if (html === undefined) {
                 return result;
             } else {
-                // 手动触发 change 事件，因为 $txt 监控了 change 事件来判断是否需要执行 editor.onchange 
+                // 手动触发 change 事件，因为 $txt 监控了 change 事件来判断是否需要执行 editor.onchange
                 $txt.change();
             }
         };
@@ -2811,7 +2811,7 @@ _e(function (E, $) {
         }).on('mouseup', function () {
             $txt.off('mouseleave.saveSelection');
         });
-        
+
     };
 
     // 随时更新 value
@@ -2973,7 +2973,7 @@ _e(function (E, $) {
             // 计算初步的结果
             var resultHeight = height + paddingTop + marginTop + paddingBottom + marginBottom;
             var resultTop = top + menuContainer.height();
-            
+
             // var spaceValue;
 
             // // 判断是否超出下边界
@@ -3016,7 +3016,7 @@ _e(function (E, $) {
 
     // IE8 [].indexOf()
     if(!Array.prototype.indexOf){
-        //IE低版本不支持 arr.indexOf 
+        //IE低版本不支持 arr.indexOf
         Array.prototype.indexOf = function(elem){
             var i = 0,
                 length = this.length;
@@ -3042,7 +3042,7 @@ _e(function (E, $) {
     // IE8 Date.now()
     if (!Date.now) {
         Date.now = function () {
-            return new Date().valueOf(); 
+            return new Date().valueOf();
         };
     }
 
@@ -3095,7 +3095,7 @@ _e(function (E, $) {
 // 语言包
 _e(function (E, $) {
     E.langs = {};
-    
+
     // 中文
     E.langs['zh-cn'] = {
         bold: '粗体',
@@ -3295,23 +3295,23 @@ _e(function (E, $) {
             data: [
                 {
                     icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/7a/shenshou_thumb.gif',
-                    value: '[草泥马]'    
+                    value: '[草泥马]'
                 },
                 {
                     icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/60/horse2_thumb.gif',
-                    value: '[神马]'    
+                    value: '[神马]'
                 },
                 {
                     icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/bc/fuyun_thumb.gif',
-                    value: '[浮云]'    
+                    value: '[浮云]'
                 },
                 {
                     icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/c9/geili_thumb.gif',
-                    value: '[给力]'    
+                    value: '[给力]'
                 },
                 {
                     icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/f2/wg_thumb.gif',
-                    value: '[围观]'    
+                    value: '[围观]'
                 },
                 {
                     icon: 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/70/vw_thumb.gif',
@@ -3519,7 +3519,7 @@ _e(function (E, $) {
             selected: '<a href="#" tabindex="-1" class="selected"><i class="wangeditor-menu-img-shrink2"></i></a>'
         }
      };
-     
+
 });
 // 对象配置
 _e(function (E, $) {
@@ -3664,7 +3664,7 @@ _e(function (E, $) {
 });
 // italic 菜单
 _e(function (E, $) {
-    
+
     E.createMenu(function (check) {
         var menuId = 'italic';
         if (!check(menuId)) {
@@ -3831,7 +3831,7 @@ _e(function (E, $) {
         menu.updateSelectedEvent = function () {
             var rangeElem = editor.getRangeElem();
             rangeElem = editor.getSelfOrParentByName(rangeElem, 'span,font', checkElemFn);
-            
+
             if (rangeElem) {
                 return true;
             }
@@ -3991,10 +3991,10 @@ _e(function (E, $) {
             if (!value) {
                 value = '<p><br></p>';
             }
-            
+
             // 过滤js代码
             if (editor.config.jsFilter) {
-                
+
                 value = value.replace(/<script[\s\S]*?<\/script>/ig, '');
             }
             // 赋值
@@ -4722,7 +4722,7 @@ _e(function (E, $) {
         $div2.append($urlInput);
         $div3.append($btnSubmit).append($btnCancel);
         $content.append($div1).append($div2).append($div3);
-        
+
         menu.dropPanel = new E.DropPanel(editor, menu, {
             $content: $content,
             width: 300
@@ -4827,7 +4827,7 @@ _e(function (E, $) {
                 $oldLinks = $txt.find('a');
                 $oldLinks.attr(uniqId, '1');
 
-                // 执行命令 
+                // 执行命令
                 editor.command(e, 'createLink', url);
 
                 // 去的没有标记的链接，即刚刚插入的链接
@@ -4861,7 +4861,7 @@ _e(function (E, $) {
             }
 
         });
-        
+
         // 增加到editor对象中
         editor.menus[menuId] = menu;
     });
@@ -5119,7 +5119,7 @@ _e(function (E, $) {
                     E.log('下载完毕，得到 ' + result.length + ' 个表情');
                     insertEmotionImgs(result, $tabContent);
                 });
-                
+
             } else if ( Object.prototype.toString.call(data).toLowerCase().indexOf('array') > 0 ) {
                 // 数组，即 data 直接就是表情包数据
                 insertEmotionImgs(data, $tabContent);
@@ -5344,7 +5344,7 @@ _e(function (E, $) {
             menu.dropPanel.hide();
         });
 
-        // callback 
+        // callback
         function callback() {
             $urlInput.val('');
         }
@@ -5594,7 +5594,7 @@ _e(function (E, $) {
                        timeoutId = setTimeout(mapData.searchMap, 500);
                    };
                    $cityInput.on('keyup change paste', searchFn);
-                   $searchInput.on('keyup change paste', searchFn); 
+                   $searchInput.on('keyup change paste', searchFn);
                 } else {
                     // 并绑定搜索事件 - input 不支持 keyup
                     searchFn = function () {
@@ -5632,8 +5632,8 @@ _e(function (E, $) {
 
             //鼠标点击，创建位置
             map.addEventListener("click", function(e){
-                var marker = new BMap.Marker(new BMap.Point(e.point.lng, e.point.lat)); 
-                map.addOverlay(marker);  
+                var marker = new BMap.Marker(new BMap.Point(e.point.lng, e.point.lat));
+                map.addOverlay(marker);
                 marker.enableDragging();
                 mapData.markers.push(marker);  //加入到数组中
             }, false);
@@ -5674,7 +5674,7 @@ _e(function (E, $) {
 
         // ---------- 构建UI ----------
 
-        // panel content 
+        // panel content
         var $content = $('<div></div>');
 
         // 搜索框
@@ -5844,7 +5844,7 @@ _e(function (E, $) {
                 // 第一次，先加载地图
                 firstTime = true;
             }
-            
+
             dropPanel.show();
             mapData.initMap();
 
@@ -5874,7 +5874,7 @@ _e(function (E, $) {
         script.src = "//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js";
         document.body.appendChild(script);
     }
-    
+
 
     E.createMenu(function (check) {
         var menuId = 'insertcode';
@@ -6306,8 +6306,8 @@ _e(function (E, $) {
             // 设置高度到全屏
             var menuContainer = editor.menuContainer;
             $txt.height(
-                E.$window.height() - 
-                menuContainer.height() - 
+                E.$window.height() -
+                menuContainer.height() -
                 (txtOuterHeight - txtHeight)  // 去掉内边距和外边距
             );
 
@@ -6513,31 +6513,34 @@ _e(function (E, $) {
         // -------- 定义load函数 --------
         fns.onload || (fns.onload = function (resultText, xhr) {
             E.log('上传结束，返回结果为 ' + resultText);
+            // 实际返回格式为json 图片路径为数组
 
             var editor = this;
             var originalName = editor.uploadImgOriginalName || '';  // 上传图片时，已经将图片的名字存在 editor.uploadImgOriginalName
             var img;
-            if (resultText.indexOf('error|') === 0) {
+            resultJson = JSON.parse(resultText);
+            if (!resultJson.success) {
                 // 提示错误
-                E.warn('上传失败：' + resultText.split('|')[1]);
-                alert(resultText.split('|')[1]);
+                E.warn('上传失败：' + resultJson.message);
+                alert(resultJson.message);
             } else {
-                E.log('上传成功，即将插入编辑区域，结果为：' + resultText);
+                var path = resultJson.data.paths[0];
+                E.log('上传成功，即将插入编辑区域，结果为：' + path);
 
                 // 将结果插入编辑器
                 img = document.createElement('img');
                 img.onload = function () {
-                    var html = '<img src="' + resultText + '" alt="' + originalName + '" style="max-width:100%;"/>';
+                    var html = '<img src="' + path + '" alt="' + originalName + '" style="max-width:100%;"/>';
                     editor.command(null, 'insertHtml', html);
 
-                    E.log('已插入图片，地址 ' + resultText);
+                    E.log('已插入图片，地址 ' + path);
                     img = null;
                 };
                 img.onerror = function () {
-                    E.error('使用返回的结果获取图片，发生错误。请确认以下结果是否正确：' + resultText);
+                    E.error('使用返回的结果获取图片，发生错误。请确认以下结果是否正确：' + path);
                     img = null;
                 };
-                img.src = resultText;
+                img.src = path;
             }
 
         });
@@ -6585,7 +6588,7 @@ _e(function (E, $) {
         function convertBase64UrlToBlob(urlData, filetype){
             //去掉url的头，并转换为byte
             var bytes = window.atob(urlData.split(',')[1]);
-            
+
             //处理异常,将ascii码小于0的转换为大于0
             var ab = new ArrayBuffer(bytes.length);
             var ia = new Uint8Array(ab);
@@ -6828,7 +6831,7 @@ _e(function (E, $) {
             editor: editor,
             uploadUrl: uploadImgUrl,
             timeout: uploadTimeout,
-            fileAccept: 'image/*'    // 只允许选择图片 
+            fileAccept: 'image/*'    // 只允许选择图片
         });
 
         // 选择本地文件，上传
@@ -7004,7 +7007,7 @@ _e(function (E, $) {
         // 如果支持 html5 上传，则返回
         return;
     }
-    
+
     // 构造函数
     var UploadFile = function (opt) {
         this.editor = opt.editor;
@@ -7166,7 +7169,7 @@ _e(function (E, $) {
 });
 // upload img 插件 粘贴图片
 _e(function (E, $) {
-    
+
     E.plugin(function () {
         var editor = this;
         var txt = editor.txt;
@@ -7299,7 +7302,7 @@ _e(function (E, $) {
 
     });
 });
-// 拖拽上传图片 插件 
+// 拖拽上传图片 插件
 _e(function (E, $) {
 
     E.plugin(function () {
@@ -7389,7 +7392,7 @@ _e(function (E, $) {
             if (isRendered) {
                 return;
             }
-            
+
             // 绑定事件
             bindEvent();
 
@@ -7499,7 +7502,7 @@ _e(function (E, $) {
                 $triangle.show();
             }
         }
-        
+
         // 隐藏 toolbar
         function hide() {
             if ($currentTable == null) {
@@ -7529,7 +7532,7 @@ _e(function (E, $) {
             // 阻止冒泡
             e.preventDefault();
             e.stopPropagation();
-            
+
         }).on('click keydown scroll', function (e) {
             setTimeout(hide, 100);
         });
@@ -7545,7 +7548,7 @@ _e(function (E, $) {
     if (E.userAgent.indexOf('MSIE 8') > 0) {
         return;
     }
-    
+
     E.plugin(function () {
         var editor = this;
         var lang = editor.config.lang;
@@ -7645,7 +7648,7 @@ _e(function (E, $) {
             if (isRendered) {
                 return;
             }
-            
+
             // 绑定事件
             bindToolbarEvent();
             bindDragEvent();
@@ -7672,7 +7675,7 @@ _e(function (E, $) {
             $toolbar.append($triangle)
                     .append($menuContainer)
                     .append($linkInputContainer);
-                    
+
             editor.$editorContainer.append($toolbar).append($dragPoint);
             isRendered = true;
         }
@@ -7999,7 +8002,7 @@ _e(function (E, $) {
             // disable 菜单
             editor.disableMenusExcept();
         }
-        
+
         // 隐藏 toolbar
         function hide() {
             if ($currentImg == null) {
@@ -8046,7 +8049,7 @@ _e(function (E, $) {
                 return;
             }
 
-            // ---------- 不是表情图标 ---------- 
+            // ---------- 不是表情图标 ----------
 
             // 渲染
             render();
@@ -8067,7 +8070,7 @@ _e(function (E, $) {
             // 阻止冒泡
             e.preventDefault();
             e.stopPropagation();
-            
+
         }).on('click keydown scroll', function (e) {
             if (!isOnDrag) {
                 setTimeout(hide, 100);
@@ -8249,13 +8252,13 @@ _e(function (E, $) {
         var $editorContainer = editor.$editorContainer;
         var editorTop = $editorContainer.offset().top;
         var editorHeight = $editorContainer.outerHeight();
-        
+
         var $menuContainer = editor.menuContainer.$menuContainer;
         var menuCssPosition = $menuContainer.css('position');
         var menuCssTop = $menuContainer.css('top');
         var menuTop = $menuContainer.offset().top;
         var menuHeight = $menuContainer.outerHeight();
-        
+
         var $txt = editor.txt.$txt;
 
         E.$window.scroll(function () {
@@ -8517,7 +8520,7 @@ _e(function (E, $) {
 _e(function (E, $) {
     E.info('本页面富文本编辑器由 wangEditor 提供 http://wangeditor.github.io/ ');
 });
-    
+
     // 最终返回wangEditor构造函数
     return window.wangEditor;
 });

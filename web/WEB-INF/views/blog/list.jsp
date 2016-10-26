@@ -1,0 +1,26 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="/source/blog/css/reset.css"/>
+    <link rel="stylesheet" href="/source/blog/css/public.css"/>
+    <title>狐獴meerkat.wiki</title>
+</head>
+<body class="blog">
+<div class="container">
+    <div class="blog-container">
+        <%--<c:if test="${not empty pagination.data}">--%>
+            <%--<c:forEach items="${pagination.data}" var="bean">--%>
+                <%--<div>${bean.title}</div>--%>
+            <%--</c:forEach>--%>
+        <%--</c:if>--%>
+    </div>
+</div>
+<script src="/source/blog/javascript/public.js"></script>
+<script>
+    MBlog.init();
+</script>
+</body>
+</html>

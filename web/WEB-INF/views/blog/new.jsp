@@ -26,9 +26,15 @@
                 <div class="input-group">
                     <form>
                         <input type="file" name="imageUpload" class="image-upload"/>
+                        <input type="hidden" name="bannerImage" id="bannerImage"/>
                     </form>
-                    <button type="button" class="btn btn-primary upload-image-btn">上传banner</button>
-                    <div class="uploaded-image"></div>
+                    <button type="button" class="btn btn-primary upload-image-btn"
+                            style="margin-bottom: 15px; margin-left: 5px;">上传banner
+                    </button>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 uploaded-image">
+                        </div>
+                    </div>
                 </div>
                 <div id="editor-container">
                     <div id="editor-trigger" style="height: 400px;"><p>请输入内容</p></div>
@@ -76,10 +82,13 @@
     editor.create();
 
     $("#submit").click(function () {
+
+
         var data = {
             "title": $("input[name=title]").val(),
             "summary": $("input[name=summary]").val(),
-            "content": editor.$txt.html()
+            "content": editor.$txt.html(),
+            "bannerImage": $("#bannerImage").val()
         }
 
         $.post("/blog/new", data, function (res) {
@@ -94,30 +103,35 @@
     });
 
     $("input[name=imageUpload]").change(function (event) {
-        var form = $(this).parent("form");
-        var formData = new FormData(form[0]);
-        $.ajax({
-            type: 'POST',
-            url: '/image/upload',
-            dataType: 'json',
-            contentType: false,
-            processData: false,
-            data: formData
-        }).done(function (res) {
-            if (res.success) {
-                var path = "/image/" + res.data.paths[0];
-                drawing($(".uploaded-image"), path);
-            } else {
-                errorMessage(res.message);
-            }
-        });
+        if (this.value.length > 0) {
+            var form = $(this).parent("form");
+            var formData = new FormData(form[0]);
+            $.ajax({
+                type: 'POST',
+                url: '/image/upload',
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                data: formData
+            }).done(function (res) {
+                if (res.success) {
+                    var path = res.data.paths[0];
+                    drawing($(".uploaded-image"), path);
+                } else {
+                    errorMessage(res.message);
+                }
+            });
+        } else {
+            return false;
+        }
     });
 
     var drawing = function (node, path) {
-        var li = $("<div>");
+        var li = $("<div class='thumbnail'>");
         var operateBar = $("<div class='operate-bar'><span class='delete'>删除</span></div>");
         var img = $("<img>");
         img.attr("src", path);
+        $("#bannerImage").val(path);
         img.appendTo(li);
         operateBar.appendTo(li);
         li.appendTo(node);

@@ -1,5 +1,6 @@
 package com.meerkat.controller;
 
+import com.meerkat.base.db.Pagination;
 import com.meerkat.base.util.DateUtil;
 import com.meerkat.base.util.JsonResponse;
 import com.meerkat.entity.Blog;
@@ -10,10 +11,7 @@ import com.meerkat.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +31,20 @@ public class BlogController {
 
     private static Logger log = LoggerFactory.getLogger(BlogController.class);
 
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public String showBlogList(HttpServletRequest request, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "20") Integer pageSize) {
+        Pagination<Blog> blogPagination = blogService.getBlogPagination(null, pageNum, pageSize);
+        request.setAttribute("pagination", blogPagination);
+        return "blog/list";
+    }
+
+    /**
+     * blog详情
+     *
+     * @param request
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "{id:^\\d+$}", method = RequestMethod.GET)
     public String showBlog(HttpServletRequest request, @PathVariable Long id) {
         Blog blog = blogService.getById(id);
@@ -43,13 +55,26 @@ public class BlogController {
         return "blog/blog";
     }
 
-
+    /**
+     * 创建blog
+     *
+     * @param request
+     * @return
+     */
     @Login
     @RequestMapping(value = "new", method = RequestMethod.GET)
     public String newBlog(HttpServletRequest request) {
         return "blog/new";
     }
 
+    /**
+     * 创建blog
+     *
+     * @param request
+     * @param response
+     * @param blog
+     * @return
+     */
     @Login
     @RequestMapping(value = "new", method = RequestMethod.POST)
     @ResponseBody

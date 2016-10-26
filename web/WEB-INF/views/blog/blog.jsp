@@ -12,13 +12,16 @@
 <body class="blog">
 <div class="container">
     <div class="blog-container">
-        <img src="/source/blog/images/1.jpg" alt="title"/>
+        <img src="${blog.bannerImage}" alt="title"/>
         <div class="blog-content wangEditor-container">
+            <nav>
+
+            </nav>
             <header>
                 <hgroup>
                     <h1>${blog.title}</h1>
                     <h3>${blog.summary}</h3>
-                    <p>${blog.postAt} ${blog.authorName}</p>
+                    <p>文 | ${blog.authorName} ${blog.postAt} </p>
                 </hgroup>
             </header>
             <div class="content wangEditor-txt">${blog.content}</div>

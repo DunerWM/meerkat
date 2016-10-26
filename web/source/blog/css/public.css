@@ -7,6 +7,10 @@ body {
     font: 16px "Microsoft YaHei", "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.blog-container .blog-content header {
+    padding: 15px;
+}
+
 img {
     vertical-align: middle;
 }
@@ -36,7 +40,7 @@ img {
 
 @media screen and (max-width: 999px) {
     .blog-content {
-        padding: 14px;
+        /*padding: 14px;*/
     }
 }
 
@@ -47,7 +51,7 @@ img {
     box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
 }
 
-.blog-container>img {
+.blog-container > img {
     width: 100%;
 }
 
@@ -59,25 +63,23 @@ img {
 }
 
 .blog-content header h3 {
+    padding: 20px 0 15px 20px;
     font-size: 14px;
+    font-style: italic;
     line-height: 22px;
-    color: #3A4145;
+    color: #898989;
 }
 
 .blog-content header p {
     font-size: 14px;
-    color: #aaa;
-    font-style: italic;
+    color: #5a5a5a;
     line-height: 34px;
 }
 
 .blog-content .content {
-    padding-top: 15px;
     color: #3A4145;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 26px;
-    text-align: justify;
-    text-indent: 28px;
 }
 
 /* blog后台 */
@@ -90,7 +92,7 @@ img {
 }
 
 /*图片上传*/
-.image-upload{
+.image-upload {
     visibility: hidden;
     height: 0;
 }
