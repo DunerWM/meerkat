@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
     <display-name>Spring Web MVC Application</display-name>
     <!--servlet-name自己取，保证前后一致-->
     <servlet>
@@ -18,7 +19,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/mvc-dispatcher-servlet.xml,classpath:applicationContext.xml</param-value>
+        <param-value>/WEB-INF/mvc-dispatcher-servlet.xml,classpath*:applicationContext.xml</param-value>
     </context-param>
 
     <listener>
@@ -44,7 +45,5 @@
         <filter-name>deviceResolverRequestFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
 
 </web-app>
