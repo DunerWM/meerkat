@@ -1,6 +1,7 @@
 package com.meerkat.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.meerkat.base.db.annotation.EntityReference;
 import com.meerkat.base.util.NormalDateSerializer;
 
 import javax.persistence.Column;
@@ -26,15 +27,15 @@ public class Blog {
     private String bannerImage;
     @Column
     private Long author;
-    private String authorName;
+    @EntityReference(referenceProperty = "author", inverse = false)
+    private User user;
     @Column
     private Long categoryId;
     @Column
     private Boolean deleted;
-    @Column
     @JsonSerialize(using = NormalDateSerializer.class)
+    @Column
     private Date createdAt;
-    private String postAt;
     @Column
     private Date updatedAt;
 
@@ -113,20 +114,12 @@ public class Blog {
         this.deleted = deleted;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public User getUser() {
+        return user;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
-    public String getPostAt() {
-        return postAt;
-    }
-
-    public void setPostAt(String postAt) {
-        this.postAt = postAt;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getBannerImage() {

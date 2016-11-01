@@ -34,6 +34,8 @@ public class User {
     @Column
     private int status;
     @Column
+    private String heads;
+    @Column
     private Date createdAt;
     @Column
     private Date updatedAt;
@@ -129,6 +131,14 @@ public class User {
         this.status = status;
     }
 
+    public String getHeads() {
+        return heads;
+    }
+
+    public void setHeads(String heads) {
+        this.heads = heads;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -144,4 +154,6 @@ public class User {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
 }

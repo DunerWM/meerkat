@@ -1,7 +1,6 @@
 package com.meerkat.controller;
 
 import com.meerkat.base.db.Pagination;
-import com.meerkat.base.util.DateUtil;
 import com.meerkat.base.util.JsonResponse;
 import com.meerkat.entity.Blog;
 import com.meerkat.entity.User;
@@ -31,11 +30,35 @@ public class BlogController {
 
     private static Logger log = LoggerFactory.getLogger(BlogController.class);
 
+    /**
+     * 博客列表
+     *
+     * @param request
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String showBlogList(HttpServletRequest request, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "20") Integer pageSize) {
         Pagination<Blog> blogPagination = blogService.getBlogPagination(null, pageNum, pageSize);
         request.setAttribute("pagination", blogPagination);
         return "blog/list";
+    }
+
+    /**
+     * 博客列表json
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "list/json", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public JsonResponse getBlogList(HttpServletRequest request, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "20") Integer pageSize) {
+        JsonResponse jsonResponse = new JsonResponse();
+        Pagination<Blog> blogPagination = blogService.getBlogPagination(null, pageNum, pageSize);
+        jsonResponse.setSuccess(true);
+        jsonResponse.set("list", blogPagination.getData());
+        return jsonResponse;
     }
 
     /**
@@ -48,7 +71,6 @@ public class BlogController {
     @RequestMapping(value = "{id:^\\d+$}", method = RequestMethod.GET)
     public String showBlog(HttpServletRequest request, @PathVariable Long id) {
         Blog blog = blogService.getById(id);
-        blog.setPostAt(DateUtil.dataToString(blog.getCreatedAt(), "yyyy-MM-dd"));
         if (blog != null) {
             request.setAttribute("blog", blog);
         }

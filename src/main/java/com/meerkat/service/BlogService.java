@@ -26,7 +26,7 @@ public class BlogService {
         if (categoryId != null) {
             segment = " and category_id = " + categoryId;
         }
-        return db.from(Blog.class).segment("deleted = 0" + segment).paginate(Blog.class, page, pageSize);
+        return db.from(Blog.class).segment("deleted = 0" + segment).orderBy("created_at desc").eager(true).paginate(Blog.class, page, pageSize);
     }
 
     public Blog getById(Long id) {

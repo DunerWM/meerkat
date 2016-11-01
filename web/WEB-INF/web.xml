@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>Spring Web MVC Application</display-name>
-
     <!--servlet-name自己取，保证前后一致-->
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>

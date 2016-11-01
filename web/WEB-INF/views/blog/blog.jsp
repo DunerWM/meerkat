@@ -21,7 +21,7 @@
                 <hgroup>
                     <h1>${blog.title}</h1>
                     <h3>${blog.summary}</h3>
-                    <p>文 | ${blog.authorName} ${blog.postAt} </p>
+                    <p>文 | ${blog.user.nick} ${blog.createdAt} </p>
                 </hgroup>
             </header>
             <div class="content wangEditor-txt">${blog.content}</div>
