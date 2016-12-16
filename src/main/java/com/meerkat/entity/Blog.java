@@ -32,6 +32,10 @@ public class Blog {
     @Column
     private Long categoryId;
     @Column
+    private int views;  // 阅读数
+    @Column
+    private int comments;  //评论数
+    @Column
     private Boolean deleted;
     @JsonSerialize(using = NormalDateSerializer.class)
     @Column
@@ -104,6 +108,22 @@ public class Blog {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
     }
 
     public Boolean getDeleted() {

@@ -2,6 +2,7 @@ package com.meerkat.controller;
 
 import com.meerkat.base.db.Pagination;
 import com.meerkat.base.util.JsonResponse;
+import com.meerkat.base.util.WebContextUtil;
 import com.meerkat.entity.Blog;
 import com.meerkat.entity.User;
 import com.meerkat.interceptor.Login;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * Created by wm on 16/9/14.
@@ -27,6 +30,8 @@ public class BlogController {
     BlogService blogService;
     @Inject
     UserService userService;
+
+    private Executor backViewsExecutor = Executors.newFixedThreadPool(2);
 
     private static Logger log = LoggerFactory.getLogger(BlogController.class);
 
@@ -42,6 +47,9 @@ public class BlogController {
     public String showBlogList(HttpServletRequest request, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "20") Integer pageSize) {
         Pagination<Blog> blogPagination = blogService.getBlogPagination(null, pageNum, pageSize);
         request.setAttribute("pagination", blogPagination);
+        if (WebContextUtil.isMobile(request)) {
+            request.setAttribute("title", "狐獴日记");
+        }
         return "blog/list";
     }
 
@@ -69,11 +77,20 @@ public class BlogController {
      * @return
      */
     @RequestMapping(value = "{id:^\\d+$}", method = RequestMethod.GET)
-    public String showBlog(HttpServletRequest request, @PathVariable Long id) {
-        Blog blog = blogService.getById(id);
+    public String showBlog(final HttpServletRequest request, @PathVariable Long id) {
+        final Blog blog = blogService.getById(id);
         if (blog != null) {
             request.setAttribute("blog", blog);
         }
+        if (WebContextUtil.isMobile(request)) {
+            request.setAttribute("title", "狐獴日记");
+        }
+        backViewsExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                blogService.updateBlogViews(request, blog);
+            }
+        });
         return "blog/blog";
     }
 

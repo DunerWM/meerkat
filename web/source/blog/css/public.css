@@ -3,7 +3,7 @@ html, body {
 
 * {
     -webkit-font-smoothing: antialiased;
-    -webkit-user-select: none;/*禁用手机浏览器的用户选择功能 */
+    -webkit-user-select: none; /*禁用手机浏览器的用户选择功能 */
     -moz-user-select: none;
 }
 
@@ -15,10 +15,54 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #373d48;
 }
-a{
+
+a {
     color: #C12127;
+    text-decoration: none;
 }
 
+img {
+    vertical-align: middle;
+}
+
+/* 组件样式 */
+.clear-f {
+    overflow: hidden;
+}
+
+.fl-l {
+    float: left;
+}
+
+.fl-r {
+    float: right;
+}
+
+.image-upload {
+    visibility: hidden;
+    height: 0;
+}
+
+.btn {
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+.link-btn {
+    padding: 5px 20px 6px 20px;
+    border-radius: 20px;
+}
+
+.red-btn {
+    background-color: #cb3837;
+    color: #fff;
+}
+
+.red-btn:hover {
+    background-color: #ac2e2d;
+}
+
+/*博客首页*/
 .blog-index-banner {
     background-color: #fff;
     margin: 0 100px;
@@ -57,55 +101,38 @@ a{
     background-color: #fff;
     box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
     margin: 15px 0;
+    overflow: hidden;
 }
 
 .list-container-content li h3 {
     font-size: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     font-weight: bolder;
 }
 
-.list-container-content li div .heads{
+.list-container-content li div .heads {
     height: 24px;
     width: 24px;
     border-radius: 100%;
 }
-.list-container-content li div span{
+
+.list-container-content li div span {
     color: #777;
     font-size: 14px;
 }
-.list-container-content li div span a{
+
+.list-container-content li div span a {
     padding: 0 4px;
 }
-.list-container-content li p{
+
+.list-container-content li p {
     text-align: justify;
-    padding: 10px 0;
+    padding: 15px 0;
     line-height: 24px;
 }
 
 .blog-container .blog-content header {
     padding: 15px;
-}
-
-img {
-    vertical-align: middle;
-}
-
-a {
-    text-decoration: none;
-}
-
-/* 组件样式 */
-.clear-f {
-    overflow: hidden;
-}
-
-.fl-l {
-    float: left;
-}
-
-.fl-r {
-    float: right;
 }
 
 .blog-container {
@@ -119,6 +146,7 @@ a {
     margin: 0 100px;
 }
 
+/*博客详情*/
 .blog-list-container div.list-container-right {
     width: 240px;
     float: right;
@@ -161,6 +189,22 @@ a {
     line-height: 26px;
 }
 
+.view-data {
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+}
+.view-data span{
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 14px 0 5px;
+}
+.view-data span,
+.view-data svg {
+    float: right;
+}
+
 /* blog后台 */
 .blog-admin {
     padding: 20px;
@@ -168,12 +212,6 @@ a {
 
 .form-horizontal > div {
     margin-top: 30px;
-}
-
-/*图片上传*/
-.image-upload {
-    visibility: hidden;
-    height: 0;
 }
 
 @media screen and (min-width: 1000px) {
@@ -191,29 +229,35 @@ a {
 }
 
 @media screen and (max-width: 768px) {
-    .blog-content {
-        /*padding: 14px;*/
+    .blog-content{
+        padding-bottom: 20px;
     }
-    .blog-list-container div.list-container-right{
+    .blog-list-container div.list-container-right {
         display: none;
     }
-    .blog-list-container div.list-container-content{
+
+    .blog-list-container div.list-container-content {
         margin-right: 0;
     }
+
     .blog-index-banner,
-    .blog-list-container{
+    .blog-list-container {
         margin: 0 2%;
     }
-    .blog-index-banner-inner{
+
+    .blog-index-banner-inner {
         margin-top: 10px;
     }
-    .blog-index-banner .logo{
+
+    .blog-index-banner .logo {
         display: none;
     }
-    .blog-index-banner .blog-index-banner-content{
+
+    .blog-index-banner .blog-index-banner-content {
         margin-left: 0;
     }
-    .blog-index-banner .blog-index-banner-content h1{
+
+    .blog-index-banner .blog-index-banner-content h1 {
         padding-top: 20px;
     }
 }

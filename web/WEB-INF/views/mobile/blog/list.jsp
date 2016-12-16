@@ -8,16 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" href="/source/blog/css/reset.css"/>
     <link rel="stylesheet" href="/source/blog/css/public.css"/>
-    <c:if test="${not empty title}">
-        <title>${title}</title>
-    </c:if>
-    <c:if test="${empty title}">
-        <title>狐獴日记--meerkat.wiki</title>
-    </c:if>
+    <title>狐獴meerkat.wiki</title>
 </head>
 <body class="blog">
-<fm:requestEncoding value="UTF-8"/>
-<fm:setLocale value="en_US"/>
+<fm:requestEncoding value="UTF-8" />
+<fm:setLocale value="en_US" />
 <div class="blog-index-banner">
     <div class="blog-index-banner-inner">
         <img src="/source/blog/images/meerkatlogo.png" class="logo" alt=""/>
@@ -56,12 +51,11 @@
                     <c:forEach items="${pagination.data}" var="bean">
                         <li>
                             <h3><a class="h3" href="/blog/${bean.id}">${bean.title}</a></h3>
-
                             <div>
                                 <img class="heads" src="${bean.user.heads}" alt=""/>
 
                                 <span><a href="/blog/list?userId=${bean.user.id}">${bean.user.nick}</a>
-                                    <fm:formatDate type="date" dateStyle="long" value="${bean.createdAt}"/></span>
+                                    <fm:formatDate type="date" dateStyle="long" value="${bean.createdAt}" /></span>
                             </div>
                             <p class="h4">${bean.summary}</p>
                             <a href="/blog/${bean.id}" class="btn link-btn red-btn fl-r">全文阅读</a>

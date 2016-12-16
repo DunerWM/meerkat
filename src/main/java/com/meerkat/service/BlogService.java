@@ -8,7 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * Created by wm on 16/9/14.
@@ -30,7 +33,9 @@ public class BlogService {
     }
 
     public Blog getById(Long id) {
-        return db.from("blog b").select("b.*, u.nick as authorName").join("INNER JOIN `user` u").where("b.id", id).segment("u.id = b.author").first(Blog.class);
+        Blog blog = db.from("blog b").select("b.*, u.nick as authorName").join("INNER JOIN `user` u").where("b.id", id).segment("u.id = b.author").eager(true).first(Blog.class);
+        update(blog);
+        return blog;
     }
 
     public Blog create(Blog blog) {
@@ -38,6 +43,15 @@ public class BlogService {
         blog.setUpdatedAt(new Date());
         db.insert(blog);
         return blog;
+    }
+
+    public void update(Blog blog) {
+        blog.setUpdatedAt(new Date());
+        db.update(blog);
+    }
+
+    public void updateBlogViews(HttpServletRequest request, Blog blog){
+
     }
 
 }
